@@ -12,7 +12,7 @@ interface WordPair {
   category?: string;
 }
 
-// База слов для словаря
+// Расширенная база слов для словаря
 const dictionaryWords: WordPair[] = [
   { foreign: "Фидбек", native: "Отзыв", context: "Оставьте, пожалуйста, отзыв о нашей работе.", category: "Бизнес" },
   { foreign: "Дедлайн", native: "Срок сдачи", context: "Срок сдачи проекта — следующий понедельник.", category: "Бизнес" },
@@ -26,6 +26,18 @@ const dictionaryWords: WordPair[] = [
   { foreign: "Мейнстрим", native: "Основное направление", context: "Это уже стало основным направлением в искусстве.", category: "Культура" },
   { foreign: "Тренд", native: "Тенденция", context: "Новая тенденция в моде этого сезона.", category: "Мода" },
   { foreign: "Апгрейд", native: "Обновление", context: "Обновление системы заняло два часа.", category: "Технологии" },
+  { foreign: "Коуч", native: "Наставник", context: "Наставник помог мне определить цели.", category: "Образование" },
+  { foreign: "Митинг", native: "Совещание", context: "Завтра состоится совещание отдела.", category: "Бизнес" },
+  { foreign: "Фрилансер", native: "Вольнонаёмный", context: "Он работает вольнонаёмным дизайнером.", category: "Работа" },
+  { foreign: "Скилл", native: "Навык", context: "Для этой работы требуются особые навыки.", category: "Образование" },
+  { foreign: "Гаджет", native: "Устройство", context: "Это новое электронное устройство очень удобно.", category: "Технологии" },
+  { foreign: "Хейтер", native: "Недоброжелатель", context: "У известных людей всегда есть недоброжелатели.", category: "Интернет" },
+  { foreign: "Реюз", native: "Повторное использование", context: "Повторное использование вещей помогает экологии.", category: "Экология" },
+  { foreign: "Спойлер", native: "Преждевременная раскрытие", context: "Не рассказывайте сюжет — это преждевременное раскрытие.", category: "Медиа" },
+  { foreign: "Фэшн", native: "Мода", context: "Она всегда следит за модой.", category: "Мода" },
+  { foreign: "Фолловер", native: "Подписчик", context: "У блогера миллионы подписчиков.", category: "Интернет" },
+  { foreign: "Геймер", native: "Игрок", context: "Профессиональные игроки тренируются ежедневно.", category: "Развлечения" },
+  { foreign: "Лайфхак", native: "Полезный совет", context: "Поделюсь с вами полезным советом по уборке.", category: "Быт" },
 ];
 
 const Dictionary = () => {
@@ -53,6 +65,41 @@ const Dictionary = () => {
             <p className="text-xl mb-8 max-w-3xl mx-auto text-muted-foreground">
               Найдите русские аналоги для популярных заимствованных слов и обогатите свою речь
             </p>
+          </div>
+        </section>
+
+        {/* Иллюстрация проблемы */}
+        <section className="py-8 px-4">
+          <div className="container max-w-5xl mx-auto">
+            <div className="bg-card rounded-lg overflow-hidden shadow-md p-6 mb-8">
+              <div className="grid md:grid-cols-2 gap-6 items-center">
+                <div>
+                  <h2 className="text-xl font-semibold mb-4">Как англицизмы меняют нашу речь</h2>
+                  <p className="text-muted-foreground mb-4">
+                    Многие из нас не замечают, насколько сильно английские заимствования 
+                    проникли в нашу повседневную речь. Использование русских аналогов помогает 
+                    сохранить богатство и самобытность родного языка.
+                  </p>
+                  <div className="flex items-center p-4 bg-primary/10 rounded-lg">
+                    <div className="text-sm md:text-base">
+                      <div className="line-through text-muted-foreground mb-1">
+                        "Я залогинился в аккаунт и чекнул фидбек от юзеров по поводу нового контента."
+                      </div>
+                      <div className="font-medium text-primary">
+                        "Я вошёл в учётную запись и проверил отзывы пользователей о новом содержании."
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-lg overflow-hidden">
+                  <img 
+                    src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                    alt="Влияние англицизмов на русский язык"
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 

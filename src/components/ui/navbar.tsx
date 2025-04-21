@@ -1,70 +1,41 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
-import { Button } from "./button";
-
-interface NavItem {
-  title: string;
-  href: string;
-}
-
-const navItems: NavItem[] = [
-  { title: "Главная", href: "/" },
-  { title: "О проблеме", href: "/problem" },
-  { title: "Словарь замен", href: "/dictionary" },
-];
+import { Link, useLocation } from "react-router-dom";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Globe } from "lucide-react";
 
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+
+  const navItems = [
+    { name: "Главная", path: "/" },
+    { name: "О проблеме", path: "/problem" },
+    { name: "Словарь замен", path: "/dictionary" },
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex h-16 items-center max-w-5xl mx-auto">
         <Link to="/" className="flex items-center space-x-2">
-          <span className="text-xl font-bold text-primary">РодноеСлово</span>
+          <Globe className="h-6 w-6 text-primary" />
+          <span className="font-bold text-xl">РодноеСлово</span>
         </Link>
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className="ml-auto flex gap-1 md:gap-2">
           {navItems.map((item) => (
-            <Link
-              key={item.href}
-              to={item.href}
-              className="text-sm font-medium transition-colors hover:text-primary"
+            <Button
+              key={item.path}
+              asChild
+              variant={location.pathname === item.path ? "default" : "ghost"}
+              size="sm"
+              className={cn(
+                "text-sm font-medium",
+                location.pathname === item.path && "bg-primary text-primary-foreground"
+              )}
             >
-              {item.title}
-            </Link>
-          ))}
-          <Button variant="default" size="sm">
-            Предложить замену
-          </Button>
-        </nav>
-        <Button
-          variant="ghost"
-          className="md:hidden"
-          size="icon"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X size={20} /> : <Menu size={20} />}
-        </Button>
-      </div>
-      {isOpen && (
-        <div className="md:hidden container py-4">
-          <nav className="flex flex-col space-y-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                to={item.href}
-                className="text-sm font-medium transition-colors hover:text-primary"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.title}
-              </Link>
-            ))}
-            <Button variant="default" size="sm">
-              Предложить замену
+              <Link to={item.path}>{item.name}</Link>
             </Button>
-          </nav>
-        </div>
-      )}
+          ))}
+        </nav>
+      </div>
     </header>
   );
 }
